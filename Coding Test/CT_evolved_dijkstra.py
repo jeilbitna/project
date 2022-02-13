@@ -1,4 +1,3 @@
-
 import sys
 import heapq
 
@@ -7,7 +6,6 @@ input = sys.stdin.readline
 v, e = map(int,input().split()) # v = 정점 개수, e = 간선 개수
 k = int(input()) # 출발 노드
 distances = [float('inf') for _ in range(v+1)] # 최단 거리 기록(테이블)
-visited = [False for _ in range(v+1)] # 방문한 노드 기록
 graph = [[] for _ in range(v+1)] # 연결 상태
 
 for _ in range(e):
@@ -23,7 +21,7 @@ def dijkstra(start):
     while queue:
         current_distance, current_node = heapq.heappop(queue)
         
-        if visited[current_node]: # 방문한 적이 있다면 무시
+        if distances[current_node] < current_distance:
             continue
         
         for next_distance, next_node in graph[current_node]:
@@ -32,7 +30,6 @@ def dijkstra(start):
                 distances[next_node] = distance # 갱신
                 heapq.heappush(queue, (distance, next_node))
             
-            visited[current_node] = True
     
 dijkstra(k)
 
