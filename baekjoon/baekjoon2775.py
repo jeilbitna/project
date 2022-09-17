@@ -22,8 +22,6 @@ def solve2775(x,y): # k층 n호의 거주자 수 출력 함수
                 dp[x][y] += solve2775(k-1,i)
             return dp[x][y]
 
-
-
 for _ in range(t):
     k = int(input())
     n = int(input())
